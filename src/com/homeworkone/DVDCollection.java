@@ -87,14 +87,21 @@ public class DVDCollection {
 	}
 
 	public String getDVDsByRating(String rating) {
-		
-		return null; // STUB: Remove this line.
-
+		String matched_list = "";
+		for (int i = 0 ; i < numdvds ; ++i ) {
+			if (rating.equals(dvdArray[i].getRating())){
+				matched_list = matched_list+ dvdArray[i].toString()+ "\n";
+			}
+		}
+		return matched_list; 
 	}
 
 	public int getTotalRunningTime() {
-
-		return 0; // STUB: Remove this line.
+		int total_time = 0;
+		for (int i = 0 ; i < numdvds; ++i) {
+			total_time = total_time + dvdArray[i].getRunningTime();
+		}
+		return total_time; // STUB: Remove this line.
 
 	}
 
