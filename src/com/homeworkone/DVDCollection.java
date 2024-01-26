@@ -107,10 +107,7 @@ public class DVDCollection {
 				modified = true;
 				break;
 			}
-		}
-//		numdvds--;
-//		dvdArray[numdvds]=new DVD("EMPTY", "XYZZY", 00);  // I am very confused in this too. How to do it
-		
+		}	
 	}
 
 	public String getDVDsByRating(String rating) {
@@ -140,7 +137,7 @@ public class DVDCollection {
 			while (sc.hasNextLine()) {
 				// System.out.println(sc.nextLine());
 				String data = sc.nextLine();
-				System.out.println(data);
+				//System.out.println(data);
 				String[] parts;
 				parts = data.split(",");
 				// System.out.println(parts[0]+parts[1]+parts[2]);
