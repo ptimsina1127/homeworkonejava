@@ -53,21 +53,47 @@ public class DVDCollection {
 		// since the user might enter non-digits when prompted.
 		// If the array is full and a new DVD needs to be added,
 		// double the size of the array first.
-		DVD dv = new DVD(title, rating, Integer.parseInt(runningTime));
-		int insertIndex = findIndex(title);
-
-//		numdvds = 5
-//		0   1	2	3	4	5	6	7	8	9	10
-//		a	b	d	e	f	w
-//		insertindex = 2; (d)
-//		arr[insetindex] =d
-
-		for (int i = numdvds; i > insertIndex; --i) {
-			dvdArray[i] = dvdArray[i - 1];
+		
+		if(numdvds == dvdArray.length)
+		{
+			DVD[] newArray = new DVD[dvdArray.length * 2];
+			System.arraycopy(dvdArray, 0, newArray, 0, dvdArray.length);
+			dvdArray = newArray;
 		}
-		dvdArray[insertIndex] = dv;
-		numdvds++;
+		
+		// bool title_same = false;
+		// run loop in dvdarray: and check if title is same in any of the array by code : dvdArray[i].title
+		//if the title is same then, change dvdArray[i].rating = new rating and for runtime.
+		//set title_same =true;
+		boolean title_same = false;
+		for (int i = 0 ; i < numdvds; ++i) {
+			if (title.equals(dvdArray[i].getTitle())) {
+				dvdArray[i].setRating(rating);
+				dvdArray[i].setRunningTime(Integer.parseInt(runningTime));
+				title_same = true;
+				modified = true; 
+			}
+		}
+		
 
+		
+		//if title_same =false;
+		if (!title_same) {
+			DVD dv = new DVD(title, rating, Integer.parseInt(runningTime));
+			int insertIndex = findIndex(title);
+
+//			numdvds = 5
+//			0   1	2	3	4	5	6	7	8	9	10
+//			a	b	d	e	f	w
+//			insertindex = 2; (d)
+//			arr[insetindex] =d
+
+			for (int i = numdvds; i > insertIndex; --i) {
+				dvdArray[i] = dvdArray[i - 1];
+			}
+			dvdArray[insertIndex] = dv;
+			numdvds++;	
+		}
 	}
 
 	public void removeDVD(String title) {
@@ -76,13 +102,14 @@ public class DVDCollection {
 //			dvdArray[i] = dvdArray[i+1];	
 //			}
 			if (title.equals(dvdArray[i].getTitle())) {
-				for (int j = i; j < numdvds-1; j++) {
-					dvdArray[j] = dvdArray[j+1];
-				}	
+				System.arraycopy(dvdArray, i+1, dvdArray, i, numdvds - 1 - i);
+				numdvds--;
+				modified = true;
+				break;
 			}
 		}
-		numdvds--;
-		dvdArray[numdvds]=new DVD("EMPTY", "XYZZY", 00);  // I am very confused in this too. How to do it
+//		numdvds--;
+//		dvdArray[numdvds]=new DVD("EMPTY", "XYZZY", 00);  // I am very confused in this too. How to do it
 		
 	}
 
