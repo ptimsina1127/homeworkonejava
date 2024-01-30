@@ -65,12 +65,12 @@ public class DVDCollection {
 		// run loop in dvdarray: and check if title is same in any of the array by code : dvdArray[i].title
 		//if the title is same then, change dvdArray[i].rating = new rating and for runtime.
 		//set title_same =true;
-		boolean title_same = false;
+		modified = false;
 		for (int i = 0 ; i < numdvds; ++i) {
 			if (title.equals(dvdArray[i].getTitle())) {
 				dvdArray[i].setRating(rating);
 				dvdArray[i].setRunningTime(Integer.parseInt(runningTime));
-				title_same = true;
+				//title_same = true;
 				modified = true; 
 			}
 		}
@@ -78,7 +78,7 @@ public class DVDCollection {
 
 		
 		//if title_same =false;
-		if (!title_same) {
+		if (!modified) {
 			DVD dv = new DVD(title, rating, Integer.parseInt(runningTime));
 			int insertIndex = findIndex(title);
 
@@ -104,7 +104,6 @@ public class DVDCollection {
 			if (title.equals(dvdArray[i].getTitle())) {
 				System.arraycopy(dvdArray, i+1, dvdArray, i, numdvds - 1 - i);
 				numdvds--;
-				modified = true;
 				break;
 			}
 		}	
@@ -114,7 +113,7 @@ public class DVDCollection {
 		String matched_list = "";
 		for (int i = 0 ; i < numdvds ; ++i ) {
 			if (rating.equals(dvdArray[i].getRating())){
-				matched_list = matched_list+ dvdArray[i].toString()+ "\n";
+				matched_list = matched_list+ dvdArray[i].toString();
 			}
 		}
 		return matched_list; 

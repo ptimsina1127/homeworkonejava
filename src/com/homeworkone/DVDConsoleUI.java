@@ -130,7 +130,7 @@ public class DVDConsoleUI implements DVDUserInterface {
 
 		int total = dvdlist.getTotalRunningTime();
 		System.out.println("Total Running Time of DVDs: ");
-		System.out.println(total);
+		System.out.println(total + " Minutes");
 
 	}
 
